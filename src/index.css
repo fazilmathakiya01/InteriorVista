@@ -429,19 +429,24 @@ html{
   }
 
 
-.feature-container {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  margin-top: -80px;
-  flex-wrap: wrap;
-  height: 40;
-}
+  .feature-container {
+    position: absolute;       
+    top: 59%;                 
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;          
+    justify-content: center;  
+    gap: 30px;           
+    flex-wrap: nowrap;        
+    z-index: 3;               /* Image ke upar dikhaye */
+    width: 100%;              /* Centering ke liye */
+  }
+  
 
 .feature-card {
   background: #ffffff;
   width: 300px;
-  padding: 25px 5px;
+  padding: 25px 50px;
   text-align: center;
   border-radius: 12px;
   box-shadow: 0px 5px 18px rgba(0, 0, 0, 0.11);
@@ -454,9 +459,9 @@ html{
 }
 
 .icon {
-  font-size: 50px;
+  padding-top: 5px;
+  font-size: 44px;
   color: #ff5b5b;
-  margin-bottom: 16px;
 }
 
 .feature-card h3 {
@@ -465,4 +470,71 @@ html{
   color: #333;
   font-family: sans-serif;
 }
-  
+
+
+/* MAIN IMAGE WRAPPER */
+#AboutUssecondImage {
+  margin-left: 7.1%;
+  position: absolute;
+}
+
+
+/* RIGHT SIDE PARA */
+
+#wrapper {
+  width: 48%;
+  padding-left: 4%;
+  font-family: sans-serif;
+}
+
+#paragraph {
+  font-size: 16px;
+  color: #7a7a7a;
+  line-height: 1.7;
+  margin-bottom: 25px;
+  padding-left: 16%;
+  width: 550px;
+}
+
+#heading {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  color: #222;
+  padding-left: 16%;
+}
+
+/* Use classes instead of IDs for multiple accordion items */
+.accordion-item {
+  padding: 25px 0;
+  cursor: pointer;
+  padding-left: 16%;
+}
+
+.accordion-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+  color: #333;
+  font-weight: 600;
+  width: 550px;
+}
+
+/* Smooth slow dropdown */
+.accordion-content {
+  max-height: 0;
+  width: 550px;
+  font-size: 15px;
+  color: #666;
+  line-height: 1.6;
+  margin-top: 17px;
+  overflow: hidden;
+  transition: max-height 0.8s ease;
+}
+
+#paragraphSection{
+  padding-left: 200%;
+  width: 70%;
+  margin-top: -70px;
+}
