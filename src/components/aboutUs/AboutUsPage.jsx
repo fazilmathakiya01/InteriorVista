@@ -1,11 +1,29 @@
-import { React , useState } from 'react'
+import { React , useState , useEffect } from 'react'
 import { Navbar } from "../homePage/Navbar.jsx";
 import aboutUsFirstIMG from "../../assets/aboutUsFirstIMG.jpeg";
 import CustomerSupportImage from "../../assets/CustomerSupportImage.png";
 import CustomerCareImage from "../../assets/CustomerCareImage.png";
 import EasyToCustomizeImage from "../../assets/EasyToCustomizeImage.png";
 import AboutUsSectionLeftSideImage from "../../assets/AboutUsSectionLeftSideImage.png";
-import Footer from "../homePage/Footer.jsx" 
+import HireUsToWork from './HireUsToWork.jsx';
+import Footer from "../homePage/Footer.jsx";
+
+const cardImages = [
+  "https://animemotivation.com/wp-content/uploads/2018/10/beautiful-anime-girl-wallpaper-cute-smile-1.jpg.webp",
+  "https://assets3.thrillist.com/v1/image/2813543/size/gn-gift_guide_variable_c.jpg",
+  "https://animemotivation.com/wp-content/uploads/2018/10/beautiful-anime-girl-wallpaper-cute-smile-1.jpg.webp",
+  "https://assets3.thrillist.com/v1/image/2813543/size/gn-gift_guide_variable_c.jpg"
+];
+
+{/* leftSide images */}
+const images = [
+  "https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aW50ZXJpb3IlMjBkZXNpZ258ZW58MHx8MHx8fDA%3D&w=1000&q=80",
+  "https://images.unsplash.com/photo-1494526585095-c41746248156?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW50ZXJpb3IlMjBkZXNpZ258ZW58MHx8MHx8fDA%3D&w=1000&q=80",
+  "https://images.unsplash.com/photo-1505691938895-1758d",
+  "66f3198?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aW50ZXJpb3IlMjBkZXNpZ258ZW58MHx8MHx8fDA%3D&w=1000&q=80",
+  "https://images.unsplash.com/photo-1520880867055-1e30d1cb001c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8aW50ZXJpb3IlMjBkZXNpZ258ZW58MHx8MHx8fDA%3D&w=1000&q=80"
+];
+
 
 const AboutUsPage = () => {
 
@@ -22,15 +40,36 @@ const AboutUsPage = () => {
 
       title.addEventListener("click", () => {
         if (content.style.maxHeight) {
-          content.style.maxHeight = null; // close
+          content.style.maxHeight = null; 
         } else {
-          content.style.maxHeight = content.scrollHeight + "px"; // smooth slow open
+          content.style.maxHeight = content.scrollHeight + "px";
         }
       });
     });
 
 
   };
+
+  {/* ------------ CARD STACK RIGHT SIDE IMAGES ------------ */}
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [animating, setAnimating] = useState(false);
+
+  useEffect(() => {
+    const interval = setInterval(() => startSwipe(), 2500);
+    return () => clearInterval(interval);
+  }, [currentIndex]);
+
+  const startSwipe = () => {
+    setAnimating(true);
+    setTimeout(() => {
+      setAnimating(false);
+      setCurrentIndex((prev) => (prev + 1) % images.length);
+    }, 500); // match CSS animation duration
+  };
+
+  const leftImage = images[currentIndex];
+  const rightImage = images[(currentIndex + 1) % images.length];
+  const nextImage = images[(currentIndex + 2) % images.length];
 
   return (
     <>
@@ -65,118 +104,153 @@ const AboutUsPage = () => {
         </div>
       </div>
 
-    <div id="childContainer2">
-            
-            {/* ------------ TOP TEXT LEFT ------------ */}
-            <div id="divtextDiv1">
-              <p id="secondPartFirstText" style={{paddingTop:'8%', paddingLeft:'7.8%'}}>EXPLORE SOME OF OUR LATEST</p>
-    
-              <p
+      <div id="childContainer2">
+              
+              {/* ------------ TOP TEXT LEFT ------------ */}
+              <div id="divtextDiv1">
+                <p id="secondPartFirstText" style={{paddingTop:'8%', paddingLeft:'7.8%'}}>EXPLORE SOME OF OUR LATEST</p>
+      
+                <p
+                  style={{
+                    color: "black",
+                    paddingLeft: '8.1%',
+                    paddingTop: "-6px",
+                    fontSize: "35px",
+                    fontWeight: 700,
+                    fontFamily:"sans-serif"
+                  }}
+                >
+                  ⸻ <strong id="secondPartSecondText">INTERIOR DESIGN WORK<span style={{color:"black"}}>.</span></strong>
+                </p>
+              </div>
+      
+              {/* ------------ MAIN LEFT IMAGE + OVERLAY ------------ */}
+              <div id="AboutUssecondImage">
+                  <img src={AboutUsSectionLeftSideImage} width={'85.9%'} height={'20%'} style={{borderRadius:9}}/>
+              </div>
+              
+              <div
                 style={{
-                  color: "black",
-                  paddingLeft: '8.1%',
-                  paddingTop: "-6px",
-                  fontSize: "35px",
-                  fontWeight: 700,
-                  fontFamily:"sans-serif"
+                  width: "48%",
+                  paddingTop: "4%",
+                  paddingLeft: "2%",
+                  fontFamily: "sans-serif",
                 }}
               >
-                ⸻ <strong id="secondPartSecondText">INTERIOR DESIGN WORK<span style={{color:"black"}}>.</span></strong>
-              </p>
-            </div>
+
+                {/* ------------ PARAGRAPH SECTION ------------ */}
+              
+                <div id="wrapper">
     
-            {/* ------------ MAIN LEFT IMAGE + OVERLAY ------------ */}
-            <div id="AboutUssecondImage">
-                <img src={AboutUsSectionLeftSideImage} width={'85.9%'} height={'20%'} style={{borderRadius:9}}/>
+          <div id="paragraphSection"> 
+          <p id="paragraph">
+          Designer HTML5 Template is 100% free to download provided by TemplateMo website. You are allowed to use this template for your commercial or business websites. You are <span style={{  }}></span> NOT allowed to redistribute the downloadable ZIP file of this template on any other website. Please contact us for more info.
+          </p>
+
+          <p id="paragraph">
+          Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel cilisis lorem ipsum dolor sit amet, consectetur adipiscingii elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </p>
+
+          {/* ------------ TITLE ------------ */}
+          <p id="heading">How It Works</p>
+
+          {/* ------------ ACCORDION ITEM 1 ------------ */}
+          <div className="accordion-item" onClick={() => toggle(1)}>
+            <div className="accordion-title">
+              <span style={{
+                borderBottom:'2px solid rgb(246, 240, 241)',
+                width: '100%',
+                }}><p style={{ paddingBottom:1 }}>What is Interior Design?</p></span>
+              <span style={{ fontSize: "20px" }}>{openIndex === 1 ? "⌃" : "⌄"}</span>
             </div>
-            
+
             <div
+              className="accordion-content"
               style={{
-                width: "48%",
-                paddingTop: "4%",
-                paddingLeft: "2%",
-                fontFamily: "sans-serif",
+                maxHeight: openIndex === 1 ? "300px" : "0px"
               }}
             >
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas ai accumsan lacus vel cilisis lorem ipsum dolor sit amet, consectetur adipiscingii elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </div>
+          </div>
 
-              {/* ------------ PARAGRAPH SECTION ------------ */}
-             
-              <div id="wrapper">
+          {/* ------------ ACCORDION ITEM 2 ------------ */}
+          <div className="accordion-item" onClick={() => toggle(2)}>
+            <div className="accordion-title">
+            <span style={{
+                borderBottom:'2px solid rgb(246, 240, 241)',
+                width: '100%',
+                }}><p style={{ paddingBottom:1 }}>What is Exterior Decoration?</p></span>
+              <span style={{ fontSize: "20px" }}>{openIndex === 2 ? "⌃" : "⌄"}</span>
+            </div>
 
-  {/* ------------ PARAGRAPHS ------------ */}
-  
-  <div id="paragraphSection"> 
-  <p id="paragraph">
-  Designer HTML5 Template is 100% free to download provided by TemplateMo website. You are allowed to use this template for your commercial or business websites. You are NOT allowed to redistribute the downloadable ZIP file of this template on any other website. Please contact us for more info.
-  </p>
+            <div
+              className="accordion-content"
+              style={{
+                maxHeight: openIndex === 2 ? "300px" : "0px"
+              }}
+            >
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas ai accumsan lacus vel cilisis lorem ipsum dolor sit amet, consectetur adipiscingii elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </div>
+          </div>
 
-  <p id="paragraph">
-  Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel cilisis lorem ipsum dolor sit amet, consectetur adipiscingii elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-  </p>
+          {/* ------------ ACCORDION ITEM 3 ------------ */}
+          <div className="accordion-item" onClick={() => toggle(3)}>
+            <div className="accordion-title">
+            <span style={{
+                borderBottom:'2px solid rgb(246, 240, 241)',
+                width: '100%',
+                }}><p style={{ paddingBottom:1 }}>3D Rendering Models</p></span>
+              <span style={{ fontSize: "20px" }}>{openIndex === 3 ? "⌃" : "⌄"}</span>
+            </div>
 
-  {/* ------------ TITLE ------------ */}
-  <p id="heading">How It Works</p>
+            <div
+              className="accordion-content"
+              style={{
+                maxHeight: openIndex === 3 ? "300px" : "0px"
+              }}
+            >
+              
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas ai accumsan lacus vel cilisis lorem ipsum dolor sit amet, consectetur adipiscingii elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </div>
+          </div>
 
-  {/* ------------ ACCORDION ITEM 1 ------------ */}
-  <div className="accordion-item" onClick={() => toggle(1)}>
-    <div className="accordion-title">
-      <span>What is Interior Design?</span>
-      <span style={{ fontSize: "20px" }}>{openIndex === 1 ? "⌃" : "⌄"}</span>
-    </div>
-
-    <div
-      className="accordion-content"
-      style={{
-        maxHeight: openIndex === 1 ? "300px" : "0px"
-      }}
-    >
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas ai accumsan lacus vel cilisis lorem ipsum dolor sit amet, consectetur adipiscingii elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-    </div>
-  </div>
-
-  {/* ------------ ACCORDION ITEM 2 ------------ */}
-  <div className="accordion-item" onClick={() => toggle(2)}>
-    <div className="accordion-title">
-      <span>What is Exterior Decoration?</span>
-      <span style={{ fontSize: "20px" }}>{openIndex === 2 ? "⌃" : "⌄"}</span>
-    </div>
-
-    <div
-      className="accordion-content"
-      style={{
-        maxHeight: openIndex === 2 ? "300px" : "0px"
-      }}
-    >
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas ai accumsan lacus vel cilisis lorem ipsum dolor sit amet, consectetur adipiscingii elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-      
-    </div>
-  </div>
-
-  {/* ------------ ACCORDION ITEM 3 ------------ */}
-  <div className="accordion-item" onClick={() => toggle(3)}>
-    <div className="accordion-title">
-      <span>3D Rendering Models</span>
-      <span style={{ fontSize: "20px" }}>{openIndex === 3 ? "⌃" : "⌄"}</span>
-    </div>
-
-    <div
-      className="accordion-content"
-      style={{
-        maxHeight: openIndex === 3 ? "300px" : "0px"
-      }}
-    >
-      
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas ai accumsan lacus vel cilisis lorem ipsum dolor sit amet, consectetur adipiscingii elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-    </div>
-  </div>
-
-</div>
+          </div>
 
 
-    </div>
-</div>
-  </div>
-        
+            </div>
+              </div>
+
+              {/* ------------ CARD STACK RIGHT SIDE ------------ */}
+
+              <div className="inside-carousel-container">
+        {/* Left card */}
+        <div className={`card left-card ${animating ? "swipe-left" : ""}`}>
+          <div className="card-inner">
+            <img src={leftImage} alt="Left Card" />
+          </div>
+        </div>
+
+        {/* Right card */}
+        <div className={`card right-card ${animating ? "swipe-left" : ""}`}>
+          <div className="card-inner">
+            <img src={rightImage} alt="Right Card" />
+          </div>
+        </div>
+
+        {/* Next card overlays right card during animation */}
+        {animating && (
+          <div className="card right-card next-card">
+            <div className="card-inner">
+              <img src={nextImage} alt="Next Card" />
+            </div>
+          </div>
+        )}
+      </div>
+
+      </div>
+
+      <HireUsToWork/>
       <Footer/>
 
     </>
