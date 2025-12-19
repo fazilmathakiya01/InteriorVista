@@ -4,25 +4,22 @@ import { useNavigate } from "react-router-dom";
 const TrendingCard = ({ image, price, description, imageHeight, imageWidth }) => {
   const navigate = useNavigate();
 
-  const handleClick = () => {
-    navigate("/explorework"); // 🔑 All cards redirect here
-  };
-
   return (
     <motion.div
-      whileHover="hover"
       initial="rest"
+      whileHover="hover"
       animate="rest"
       style={{
         width: imageWidth,
         height: imageHeight,
-        borderRadius: 8,
-        overflow: "hidden",
         position: "relative",
+        overflow: "hidden",
+        borderRadius: 10,
         cursor: "pointer",
       }}
+      onClick={() => navigate("/explorework")}
     >
-      {/* PRICE TAG */}
+      {/* PRICE */}
       <div
         style={{
           position: "absolute",
@@ -32,31 +29,26 @@ const TrendingCard = ({ image, price, description, imageHeight, imageWidth }) =>
           color: "#fff",
           padding: "8px 14px",
           fontFamily: "sans-serif",
-          fontSize: 14,
+          fontSize: 13,
           fontWeight: 600,
-          borderTopLeftRadius: 8,
+          zIndex: 2,
           borderBottomRightRadius: 8,
-          zIndex: 3,
         }}
       >
         {price}
       </div>
 
-      {/* IMAGE (ZOOM INSIDE & CLICKABLE) */}
+      {/* IMAGE */}
       <motion.img
         src={image}
-        height={imageHeight}
-        width={imageWidth}
-        alt="image"
-        whileHover={{ scale: 1.15 }}
-        transition={{ duration: 0.4, ease: "easeOut" }}
+        alt="trending"
         style={{
-          width: imageWidth,
-          height: imageHeight,
+          width: "100%",
+          height: "100%",
           objectFit: "cover",
-          cursor: "pointer",
         }}
-        onClick={handleClick}
+        whileHover={{ scale: 1.12 }}
+        transition={{ duration: 0.4, ease: "easeOut" }}
       />
 
       {/* FOOTER */}
@@ -65,40 +57,23 @@ const TrendingCard = ({ image, price, description, imageHeight, imageWidth }) =>
           rest: { y: "100%" },
           hover: { y: 0 },
         }}
-        transition={{ duration: 0.4, ease: "easeOut" }}
+        transition={{ duration: 0.35, ease: "easeOut" }}
         style={{
           position: "absolute",
           bottom: 0,
           left: 0,
           width: "100%",
-          height: "22%",
-          minHeight: 70,
-          maxHeight: 110,
-          background: "rgba(255, 46, 46, 0.65)",
-          color: "#fff",
-          padding: 14,
-          fontFamily: "sans-serif",
+          height: "16%",
+          background: "hsla(0, 92.70%, 48.00%, 0.65)",
           display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
+          alignItems: "center",
+          padding: 14,
+          color: "#fff",
+          fontFamily: "sans-serif",
+          fontSize: 16,
         }}
       >
-        <p
-          onClick={handleClick}
-          style={{
-            fontSize: 13,
-            opacity: 0.85,
-            margin: "4px 0 0",
-            display: "-webkit-box",
-            WebkitLineClamp: 2,
-            WebkitBoxOrient: "vertical",
-            overflow: "hidden",
-            cursor: "pointer",
-            textDecoration: "underline",
-          }}
-        >
-          {description}
-        </p>
+        {description}
       </motion.div>
     </motion.div>
   );
